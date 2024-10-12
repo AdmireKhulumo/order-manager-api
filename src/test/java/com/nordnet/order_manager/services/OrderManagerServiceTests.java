@@ -14,6 +14,7 @@ import org.mockito.MockitoAnnotations;
 import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -99,7 +100,7 @@ class OrderManagerServiceTest {
         Instant startDate = Instant.now().minusSeconds(86400);
         Instant endDate = Instant.now();
 
-        when(orderRepository.findOrdersByTickerAndDateRange(ticker, startDate, endDate)).thenReturn(Arrays.asList());
+        when(orderRepository.findOrdersByTickerAndDateRange(ticker, startDate, endDate)).thenReturn(List.of());
 
         OrderSummaryDto summary = orderManagerService.getOrderSummary(ticker, startDate, endDate);
 

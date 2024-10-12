@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 class ApiResponseUtilTest {
 
@@ -19,7 +19,7 @@ class ApiResponseUtilTest {
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals(message, response.getBody().getMessage());
         assertEquals(data, response.getBody().getData());
-        assertEquals(true, response.getBody().isSuccess());
+        assertTrue(response.getBody().isSuccess());
     }
 
     @Test
@@ -33,7 +33,7 @@ class ApiResponseUtilTest {
         assertEquals(status, response.getStatusCode());
         assertEquals(message, response.getBody().getMessage());
         assertEquals(data, response.getBody().getData());
-        assertEquals(true, response.getBody().isSuccess());
+        assertTrue(response.getBody().isSuccess());
     }
 
     @Test
@@ -45,7 +45,7 @@ class ApiResponseUtilTest {
 
         assertEquals(status, response.getStatusCode());
         assertEquals(message, response.getBody().getMessage());
-        assertEquals(null, response.getBody().getData());
-        assertEquals(false, response.getBody().isSuccess());
+        assertNull(response.getBody().getData());
+        assertFalse(response.getBody().isSuccess());
     }
 }
