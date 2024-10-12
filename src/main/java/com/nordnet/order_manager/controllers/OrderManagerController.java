@@ -37,7 +37,7 @@ public class OrderManagerController {
                 : ApiResponseUtil.success("Order found.", OrderMapper.entityToDto(response.get()));
     }
 
-    @PostMapping(value = "/", produces = {MediaType.APPLICATION_JSON_VALUE})
+    @PostMapping(produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<ApiResponse<OrderDto>> createOrder(@Valid @RequestBody OrderDto orderDto) {
         log.info("Received request to create new order.");
         var orderEntity = OrderMapper.dtoToEntity(orderDto);
@@ -49,7 +49,7 @@ public class OrderManagerController {
                 : ApiResponseUtil.success("Created new order.", OrderMapper.entityToDto(response), HttpStatus.CREATED);
     }
 
-    @GetMapping("/summary")
+    @GetMapping(value ="/summary", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<ApiResponse<OrderSummaryDto>> getOrderSummary(
             @RequestParam String ticker,
             @RequestParam Instant startDate,
