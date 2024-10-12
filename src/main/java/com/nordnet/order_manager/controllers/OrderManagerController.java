@@ -1,14 +1,10 @@
 package com.nordnet.order_manager.controllers;
 
 import com.nordnet.order_manager.models.ApiResponse;
-import com.nordnet.order_manager.utils.ApiResponseUtil;
 import com.nordnet.order_manager.models.dto.OrderDto;
 import com.nordnet.order_manager.models.dto.OrderSummaryDto;
-import com.nordnet.order_manager.models.entities.OrderEntity;
 import com.nordnet.order_manager.services.OrderManagerService;
-//import io.swagger.v3.oas.annotations.tags.Tag;
-import java.time.Instant;
-
+import com.nordnet.order_manager.utils.ApiResponseUtil;
 import com.nordnet.order_manager.utils.OrderMapper;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +14,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import java.time.Instant;
 
 @RestController
 @RequestMapping("/v1")
