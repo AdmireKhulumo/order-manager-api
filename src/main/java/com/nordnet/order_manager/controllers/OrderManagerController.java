@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import java.time.Instant;
 
 @RestController
-@RequestMapping("/v1")
+@RequestMapping("/v1/orders")
 @RequiredArgsConstructor
 @Slf4j
 @Validated
@@ -26,54 +26,40 @@ public class OrderManagerController {
 
     private final OrderManagerService orderManagerService;
 
-    @GetMapping(
-            value = "/orders/{orderId}",
-            produces = {MediaType.APPLICATION_JSON_VALUE})
+    @GetMapping(value = "/{orderId}", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<ApiResponse<OrderDto>> getOrder(@PathVariable("orderId") long orderId) {
         log.info("Received request to GET order with id {}", orderId);
 
         var response = orderManagerService.getOrder(orderId);
 
-        if (!response.isPresent()) {
-            return ApiResponseUtil.error("Order not found.", HttpStatus.NOT_FOUND);
-        }
-
-        return ApiResponseUtil.success("Order found.", OrderMapper.entityToDto(response.get()));
-
+        return response.isEmpty()
+                ? ApiResponseUtil.error("Order not found.", HttpStatus.NOT_FOUND)
+                : ApiResponseUtil.success("Order found.", OrderMapper.entityToDto(response.get()));
     }
 
-    @PostMapping(
-            value = "/orders",
-            produces = {MediaType.APPLICATION_JSON_VALUE}
-    )
+    @PostMapping(value = "/", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<ApiResponse<OrderDto>> createOrder(@Valid @RequestBody OrderDto orderDto) {
         log.info("Received request to create new order.");
         var orderEntity = OrderMapper.dtoToEntity(orderDto);
 
         var response = orderManagerService.createOrder(orderEntity);
 
-        if (response.getId() == 0) {
-            return ApiResponseUtil.error("Failed to create order.", HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-
-        return ApiResponseUtil.success("Created new order.", OrderMapper.entityToDto(response), HttpStatus.CREATED);
-
+        return response.getId() == 0
+                ? ApiResponseUtil.error("Failed to create order.", HttpStatus.INTERNAL_SERVER_ERROR)
+                : ApiResponseUtil.success("Created new order.", OrderMapper.entityToDto(response), HttpStatus.CREATED);
     }
 
-    @GetMapping("/orders/summary")
+    @GetMapping("/summary")
     public ResponseEntity<ApiResponse<OrderSummaryDto>> getOrderSummary(
             @RequestParam String ticker,
             @RequestParam Instant startDate,
-            @RequestParam Instant endDate)
-    {
+            @RequestParam Instant endDate) {
         log.info("Received request to GET order summary for ticker {}", ticker);
 
         var response = orderManagerService.getOrderSummary(ticker, startDate, endDate);
 
-        if(response == null){
-            return ApiResponseUtil.error("No order data found.", HttpStatus.NOT_FOUND);
-        }
-
-        return ApiResponseUtil.success("Order summary calculated.", response);
+        return response == null
+                ? ApiResponseUtil.error("No order data found.", HttpStatus.NOT_FOUND)
+                : ApiResponseUtil.success("Order summary calculated.", response);
     }
 }
