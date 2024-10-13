@@ -54,11 +54,10 @@ public class OrderManagerService {
                         entry -> calculateSideSummary(entry.getValue())
                 ));
 
-        OrderSummaryDto summaryDto = new OrderSummaryDto();
-        summaryDto.setTotalOrders(orders.size());
-        summaryDto.setSideSummaries(sideSummaries);
-
-        return summaryDto;
+        return new OrderSummaryDto()
+                .setTicker(ticker)
+                .setTotalOrders(orders.size())
+                .setSideSummaries(sideSummaries);
     }
 
     private SideSummaryDto calculateSideSummary(List<OrderEntity> orders) {

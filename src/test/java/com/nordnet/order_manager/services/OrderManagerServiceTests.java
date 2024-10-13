@@ -97,6 +97,7 @@ class OrderManagerServiceTest {
 
         // Assert
         assertNotNull(summary);
+        assertEquals(ticker, summary.getTicker());
         assertEquals(4, summary.getTotalOrders());
         assertEquals(2, summary.getSideSummaries().size());
 

@@ -10,6 +10,7 @@ import java.util.Map;
 @Accessors(chain = true)
 public class OrderSummaryDto {
     private int totalOrders;
+    private String ticker;
     private Map<Side, SideSummaryDto> sideSummaries;
 }
 

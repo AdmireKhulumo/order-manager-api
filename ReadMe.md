@@ -43,7 +43,7 @@ curl --location 'http://localhost:8080/v1/orders/3'
     "message": "Order found.",
     "data": {
         "id": 3,
-        "ticker": "AAPL",
+        "ticker": "SAVE",
         "side": "SELL",
         "volume": 16745.00,
         "currency": "BWP",
@@ -65,7 +65,7 @@ curl --location 'http://localhost:8080/v1/orders' \
   "side": "BUY",
   "volume": 16745,
   "currency": "BWP",
-  "price": 1637.45
+  "price": 1600.45
 }'
 ```
 
@@ -78,9 +78,9 @@ curl --location 'http://localhost:8080/v1/orders' \
         "id": 10,
         "ticker": "SAVE",
         "side": "BUY",
-        "volume": 167345,
+        "volume": 16745,
         "currency": "BWP",
-        "price": 1137.45,
+        "price": 1600.45,
         "createdAt": "2024-10-11T21:54:41.297794Z"
     }
 }
@@ -91,7 +91,7 @@ Gets the summary of an order given a ticker symbol and timestamp range.
 
 **Sample Request**
 ```
-curl --location 'http://localhost:8080/v1/orders/summary?ticker=AAPL&startDate=2024-10-11T00%3A00%3A00Z&endDate=2024-10-11T23%3A59%3A59Z'
+curl --location 'http://localhost:8080/v1/orders/summary?ticker=SAVE&startDate=2024-10-11T00%3A00%3A00Z&endDate=2024-10-11T23%3A59%3A59Z'
 ```
 
 **Sample Success Response - 200 OK**
