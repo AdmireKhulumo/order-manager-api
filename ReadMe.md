@@ -23,7 +23,7 @@ I had to stop somewhere, unfortunately, so here is a list of things I would have
 * Connect and run it on the cloud - GCP of course, with a non-local database.
 * Conditionally run tests as part of the build process. These would only run when building in certain scenarios, such as a PR, but not on merge. It can be controlled by an environment variable. 
 
-# How To Run
+# How To Run The App
 This application can be run with a Docker compose command. I have kept sample secrets in the docker-compose.yml file, so it should be enough to run this on the project's root: 
 ` docker-compose up --build `
 
