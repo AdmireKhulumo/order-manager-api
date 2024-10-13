@@ -9,7 +9,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.Instant;
@@ -45,6 +44,7 @@ public class OrderManagerService {
             return null;
         }
 
+        log.info("Found {} orders for ticker {}. Calculating summary.", orders.size(), ticker);
         Map<Side, List<OrderEntity>> ordersBySide = orders.stream()
                 .collect(Collectors.groupingBy(OrderEntity::getSide));
 

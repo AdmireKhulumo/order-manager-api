@@ -5,10 +5,8 @@ import com.nordnet.order_manager.models.entities.OrderEntity;
 import com.nordnet.order_manager.models.enums.Side;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import java.math.BigDecimal;
 import java.time.Instant;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class OrderMapperTests {
@@ -18,7 +16,6 @@ class OrderMapperTests {
 
     @BeforeEach
     void setUp() {
-        // Create a sample OrderDto
         orderDto = new OrderDto()
                 .setId(1L)
                 .setSide(Side.BUY)
@@ -28,7 +25,6 @@ class OrderMapperTests {
                 .setTicker("SAVE")
                 .setCreatedAt(Instant.now());
 
-        // Create a sample OrderEntity
         orderEntity = new OrderEntity()
                 .setId(1L)
                 .setSide(Side.BUY)
