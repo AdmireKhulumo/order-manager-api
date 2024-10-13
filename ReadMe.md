@@ -100,6 +100,7 @@ curl --location 'http://localhost:8080/v1/orders/summary?ticker=SAVE&startDate=2
     "success": true,
     "message": "Order summary calculated.",
     "data": {
+        "ticker": "SAVE",
         "totalOrders": 5,
         "sideSummaries": {
             "BUY": {
